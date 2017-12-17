@@ -38,6 +38,7 @@ public class Main {
 				dimensions = line.split("x");
 				arr.add(dimensions);
 			}
+			reader.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}

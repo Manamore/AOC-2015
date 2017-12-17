@@ -1,16 +1,12 @@
 package day3;
 
 import java.awt.Point;
-import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +16,7 @@ public class Main {
 		List<Character> input_arr = readFileByChar("../testdata/day3.txt");
 		Set<Point> coord_arr = new HashSet<>();
 		//List<Point> coord_arr = new ArrayList<>(); To make sure all values print as expected
-		int counter = 1;
+		//int counter = 1;
 		
 		Point coord_curr = new Point(0, 0);
 		//Prep position 0
@@ -29,7 +25,7 @@ public class Main {
 		
 		//Assign coords from input
 		for(char c : input_arr){
-			counter += 1;
+			//counter += 1;
 			coord_curr = new Point(coord_curr.x, coord_curr.y);
 			double x = coord_curr.x;
 			double y = coord_curr.y;
@@ -65,6 +61,7 @@ public class Main {
 			while((c = reader.read()) != -1){
 				arr.add((char) c);
 			}
+			reader.close();
 		} catch (Exception e) {
 			System.out.println(e);
 			e.printStackTrace();
