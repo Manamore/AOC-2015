@@ -1,2 +1,1 @@
-# AOC-2015
-Advent Of Code 2015
+Repo for 2015 Of advent of code
