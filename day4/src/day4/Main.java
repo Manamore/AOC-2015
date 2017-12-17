@@ -15,7 +15,7 @@ public class Main {
 		do{
 			String hexString = generateHash(Integer.toString(number));
 			System.out.println(hexString.substring(0, 5));
-			if(hexString.substring(0, 5).equals("00000")){
+			if(hexString.substring(0, 6).equals("000000")){
 				pass = true;
 				System.out.println("Passed with \'" + number + "\'");
 			}
@@ -27,6 +27,7 @@ public class Main {
 		
 	}
 	
+	//I take a while :(
 	public static String generateHash(String testInput){
 		try{
 			String combinedString = puzzleInput + testInput;
