@@ -7,11 +7,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		List<String[]> fileArr = readFileByLine("../testdata/day2.txt");
+		int totalRibbonReq = 0;
 		int totalPaperReq = 0;
 		for(String[] dimensions : fileArr){
-			totalPaperReq += calcSurfaceArea(dimensions);
+			totalPaperReq += calcPaperReq(dimensions);
+			totalRibbonReq += calcRibbonReq(dimensions);
 		}
-		System.out.println(totalPaperReq);
+		System.out.println("Total wrapping paper required: " + totalPaperReq);
+
+		System.out.println("Total ribbon required: " + totalRibbonReq);
 		
 		/*
 		//Print entire list
@@ -45,22 +49,57 @@ public class Main {
 		return arr;
 	}
 	
-	public static int calcSurfaceArea(String[] dimensions){
-		int l,w,h;
+	public static int calcPaperReq(String[] dimensions){
 		int smallestSide;
 		int totalSA;
+		List<Integer> dimensionList;
 		
-		l = Integer.parseInt(dimensions[0]);
-		w = Integer.parseInt(dimensions[1]);
-		h = Integer.parseInt(dimensions[2]);
+		dimensionList = sortDimensions(dimensions, "Surface Area");
+		smallestSide = dimensionList.get(0);
+		totalSA = smallestSide;
 		
-		smallestSide = l*w;
-		if(smallestSide > w*h) smallestSide = w*h;
-		if(smallestSide > h*l) smallestSide = h*l;
-		
-		totalSA = 2*(l*w) + 2*(w*h) + 2*(h*l) + smallestSide;
+		for (Integer surfaceArea : dimensionList){
+			totalSA += surfaceArea*2;
+		}
 		
 		return totalSA;
 		
+	}
+	
+	public static int calcRibbonReq(String[] dimensions){
+		List<Integer> dimensionList;
+		int ribbon, bow;
+		int totalLength;
+		dimensionList = sortDimensions(dimensions, "Singular");
+		
+		ribbon = (dimensionList.get(0) + dimensionList.get(1))*2;
+		bow = 1;
+		for (Integer dimension : dimensionList){
+			bow *= dimension;
+		}
+		totalLength = ribbon + bow;
+		
+		return totalLength;
+	}
+	
+	public static List<Integer> sortDimensions(String[] dimensions, String conversionType){
+		List<Integer> dimensionList = new ArrayList<Integer>();
+		int l,w,h;
+		l = Integer.parseInt(dimensions[0]);
+		w = Integer.parseInt(dimensions[1]);
+		h = Integer.parseInt(dimensions[2]);
+		if(conversionType == "Surface Area"){
+			dimensionList.add(l*w);
+			dimensionList.add(w*h);
+			dimensionList.add(h*l);
+		}
+		else{
+			dimensionList.add(l);
+			dimensionList.add(w);
+			dimensionList.add(h);
+		}
+		Collections.sort(dimensionList);
+		
+		return dimensionList;
 	}
 }
