@@ -50,7 +50,6 @@ public class Main {
 	public static String readFile(String filePath){
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
-			reader.close();
 			return reader.readLine();
 		} catch (Exception e) {
 			System.out.println(e);
