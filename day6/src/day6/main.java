@@ -38,7 +38,7 @@ public class main {
 				while(x1 != x2){
 					int y = y1;
 					while(y != y2){
-						lights[x1][y] = 1;
+						lights[x1][y] += 1;
 						y += yChange;
 					}
 					x1 += xChange;
@@ -48,7 +48,7 @@ public class main {
 				while(x1 != x2){
 					int y = y1;
 					while(y != y2){
-						lights[x1][y] = 0;
+						if(lights[x1][y] != 0) lights[x1][y] -= 1;
 						y += yChange;
 					}
 					x1 += xChange;
@@ -58,8 +58,7 @@ public class main {
 				while(x1 != x2){
 					int y = y1;
 					while(y != y2){
-						if(lights[x1][y] == 1) lights[x1][y] = 0;
-						else lights[x1][y] = 1;
+						lights[x1][y] += 2;
 						y += yChange;
 					}
 					x1 += xChange;
